@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>节流去抖</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 1000px;
+            height: 9000px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+    //1
+        <!--<script>-->
+            // window.onscroll = throttle(function(){
+            //     console.log(1);
+            // },1000);
+        //节流
+        //     function throttle(fn,time) {
+        //         var beforeTime = 0;
+        //         return function () {        //暴露出去的函数
+        //             var self = this;
+        //             var args = arguments;
+        //             var currTime = +new Date();
+        //             if (currTime - beforeTime >= time){
+        //                 //执行了一次
+        //                 fn.apply(self,args);
+        //                 beforeTime = currTime;
+        //             }
+        //         }
+        //     }
+
+            //防抖
+            // function debbounce(fn,time) {
+            //     //闭包里面保存的数据
+            //     var timer =null;
+            //     return function (){
+            //         var self = this;
+            //         var args = arguments;
+            //         clearTimeout(timer);
+            //         timer = setTimeout(function () {
+            //             fn.apply(self,args);
+            //         },time)
+            //     }
+            // }
+       <!--// </script>-->
+<script>
+    window.onscroll = throttle(function () {
+                console.log(1);
+    },1000);
+    //2
+    // 节流
+    function throttle(fn,time) {
+        var beforeTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var nowTime = +new Date();
+            if (nowTime - beforeTime >=time){
+                fn.apply(self,args);
+                beforeTime = nowTime;
+            }
+        }
+    }
+
+    // 防抖
+        function dubbounce(fn,time) {
+            var timer =null;
+                return function () {
+                    var self =this;
+                    var args = arguments;
+                    clearTimeout(timer);
+                    timer=setTimeout(function () {
+                        fn.apply(self,args);
+                    },time)
+                }
+        }
+
+    //3
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+           var lastTime = +new Date();
+           var self = this;
+           var args = arguments;
+           if (lastTime - firstTime >= time){
+               fn.apply(self,args);
+                firstTime = lastTime;
+           }
+        }
+    }
+    
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer)
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+    //4
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+    //5
+    function throttle(fn,time) {
+                var firstTime = 0;
+                return function () {
+                    var self = this;
+                    var args = arguments;
+                    var lastTime = +new Date();
+                    if (lastTime - lastTime >= time){
+                            fn.apply(self,args);
+                            firstTime = lastTime;
+                    }
+                }
+    }
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this
+            var args =arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+    //6
+    function throttle(fn,time) {
+        var firstTime =0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+
+
+
+    //7
+    function throttle(fn ,time) {
+        var firstTime =0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if(lastTime - firstTime >= time){
+                    fn.apply(self,args);
+                    firstTime =lastTime;
+            }
+        }
+    }
+
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+
+            },time)
+        }
+    }
+
+    //8
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = + new Date();
+            if (lastTime - firstTime >= time){
+                    fn.apply(self,args);
+                    firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+    //9
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = + new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args)
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+             var self =this;
+             var args =arguments;
+             clearTimeout(timer);
+             timer = setTimeout(function () {
+                 fn.apply(self,args);
+             },time)
+        }
+    }
+
+    //10
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer  = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+            }
+        }
+
+        //11
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+    //12
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = + new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+    //13
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+
+    //14
+    function throttle(fun,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = + new Date();
+            if (lastTime - firstTime >= time){
+                fun.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+    
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fn.apply(self,args)
+            },time);
+        }
+    }
+
+    //15
+    function throttle(fun,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fun.apply(self,args);
+                firstTime  = lastTime;
+            }
+        }
+    }
+    function dubbounce(fun,args) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fun.apply(self,args);
+
+            },time)
+        }
+    }
+    //16
+    function throttle(fun,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args = arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                   fun.apply(self,args);
+                   firstTime =lastTime;
+            }
+        }
+    }
+    function dubbounce(fun,args) {
+        var timer = null;
+        return function () {
+            var self = this;
+            var args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function () {
+                fun.apply(self,args);
+
+            },time)
+        }
+    }
+    //17
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+    //18
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+    //19
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+    //20
+    function throttle(fn,time) {
+        var firstTime = 0;
+        return function () {
+            var self = this;
+            var args =arguments;
+            var lastTime = +new Date();
+            if (lastTime - firstTime >= time){
+                fn.apply(self,args);
+                firstTime = lastTime;
+            }
+        }
+    }
+
+    function dubbounce(fn,time) {
+        var timer =null;
+        return function () {
+            var self = this;
+            var args =arguments;
+            clearTimeout(timer);
+            timer =  setTimeout(function () {
+                fn.apply(self,args);
+            },time)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tab-item{
+            background: lightgoldenrodyellow;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .active-tab span{
+            display: none;
+        }
+        .tab a{
+            text-decoration: none;
+            display: inline-block;
+            width: 100px; height: 60px;
+            text-align: center; line-height: 60px;
+            background: bisque; border-radius: 4px;
+        }
+
+        .active{
+            background: orange !important;
+        }
+
+        .hide{
+            display: none !important;
+        }
+        .show{
+            display: inline-block !important;
+        }
+
+        .active-tab span{
+            display: none;
+            width: 100px; height: 60px; background: greenyellow;
+            line-height: 60px; text-align: center;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<!-- 激活的标签 - 开始 -->
+<div class="active-tab">
+    <span>男</span>
+    <span>女</span>
+    <span>人妖</span>
+</div>
+<!-- 激活的标签 - 结束 -->
+
+<!-- 筛选项 - 开始 -->
+<div class="tab">
+    <a href="javascript:;">男</a>
+    <a href="javascript:;">女</a>
+    <a href="javascript:;">人妖</a>
+</div>
+<!-- 筛选项 - 结束-->
+
+<div class="tab-show">
+    <div class="tab-item">
+        <p>名字：</p>
+        <p>年龄：</p>
+        <p>性别：</p>
+        <p>个人简介：</p>
+    </div>
+</div>
+
+<script src="shaixuan.js"></script>
+
+
+<script>
+
+
+    function listToArr(nodeList){
+        return Array.prototype.slice.call(nodeList,0);
+    }
+
+// 初始化加载所有数据
+showList(["男","女","人妖"]);
+
+// 创建容纳激活标签的数组
+var activeArr = [];
+
+
+// 获取 tab中按钮的DOM 和 激活标签的DOM
+var aBtns = document.querySelectorAll(".tab a"); // tab中的 按钮
+var activeBtns = document.querySelectorAll(".active-tab span"); // 激活选项按钮
+
+
+// 添加事件
+for(var i=0;i<aBtns.length;i++){
+    aBtns[i].addEventListener("click",function(event){
+        // 点击的筛选项的值
+        var t = this.innerText;
+        var tIndex = activeArr.indexOf(t);
+        if(tIndex !== -1){ // 激活标签数组中已经有了当前要添加的值
+            activeArr.splice(tIndex,1); // 移除数组中的项
+        }else{ // 还没有添加相应的筛选条件
+            activeArr.push(t);
+        }
+        showList(activeArr);
+        activeTabFn(activeArr);
+
+    },false);
+}
+
+for(var i = 0;i<activeBtns.length;i++){
+    activeBtns[i].onclick = function(){
+        var activeBtnText = this.innerText;
+        var tIndex = activeArr.indexOf(activeBtnText);
+        if(tIndex !== -1){
+            // 点击的激活选项在激活数组中找到了
+            activeArr.splice(tIndex,1);
+        }
+        activeTabFn(activeArr);
+        showList(activeArr);
+
+    }
+}
+
+
+
+// 激活状态，
+function activeTabFn(targetArr){
+    // 根据数组添加 class 激活标签
+    listToArr(aBtns).forEach(function(item,index){
+        if(targetArr.indexOf(item.innerText) !== -1){
+            // 如果当前点击的按钮的值在激活的数组里面
+            item.classList.add("active");
+        }else{
+            // 如果不在就移除掉他
+            item.classList.remove("active");
+        }
+    });
+
+    // 根据激活的数组显示隐藏已选标签
+
+    listToArr(activeBtns).forEach(function(item,index){
+        var spanText = item.innerText;
+        if(targetArr.indexOf(spanText) !== -1){
+            // 当前的筛选激活项在目标数组里面存在
+            item.classList.remove("hide");
+            item.classList.add("show");
+        }else{
+            // 当前的筛选激活项在目标数组里面不存在
+            item.classList.remove("show");
+            item.classList.add("hide");
+        }
+    });
+
+
+}
+
+
+// 显示列表的函数
+function showList(targetArr){
+    // 已经筛选出来的 html 内容
+    var html = "";
+    targetArr.forEach(function(item,index){
+        pArr.forEach(function(pObj,pIndex){
+            if(item == pObj.sex){
+                // 匹配到了激活标签对应的对象
+                html += "<div class='tab-item'>" +
+                        "<p>名字："+ pObj.name +"</p>" +
+                        "<p>年龄："+ pObj.age +"</p>" +
+                        "<p>性别："+ pObj.sex +"</p>" +
+                        "<p>个人简介："+ pObj.jianjie +"</p>" +
+                        "</div>"
+            }
+        });
+    });
+
+    document.querySelector(".tab-show").innerHTML = html;
+}
+
+
+</script>
+
+</body>
+</html>
