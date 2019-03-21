@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20次</title>
+</head>
+<body>
+<script>
+//第一遍
+    window.onscroll=throttle(function () {
+        console.log(1);
+
+    },1000);
+    //节流
+    function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {//暴露出去的函数
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+//执行了一次
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+
+
+//第2遍
+    window.onscroll=throttle(function () {
+        console.log(1);
+
+    },1000);
+    //节流
+    function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {//暴露出去的函数
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+//执行了一次
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+
+
+//第3遍
+    window.onscroll=throttle(function () {
+        console.log(1);
+
+    },1000);
+    //节流
+    function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {//暴露出去的函数
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+//执行了一次
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+
+
+//第4遍
+
+    window.onscroll=throttle(function () {
+        console.log(1);
+
+    },1000);
+    //节流
+    function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {//暴露出去的函数
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+//执行了一次
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+
+//第5遍
+
+    window.onscroll=throttle(function () {
+        console.log(1);
+
+    },1000);
+
+    function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+
+
+
+
+
+//第6遍
+
+window.onscroll=throttle(function () {
+    console.log(1);
+
+},1000);
+
+function throttle(fn,time) {
+    var beforeTime =0;
+    return function () {
+        var self=this;
+        var args=arguments;
+        var currTime=+new Date();
+        if(currTime-beforeTime>=time){
+
+            fn.apply(self,args);
+            beforeTime=currTime;
+        }
+    }
+}
+
+
+
+
+
+//第7遍
+
+window.onscroll=throttle(function () {
+    console.log(1);
+
+},1000);
+
+function throttle(fn,time) {
+    var beforeTime =0;
+    return function () {
+        var self=this;
+        var args=arguments;
+        var currTime=+new Date();
+        if(currTime-beforeTime>=time){
+
+            fn.apply(self,args);
+            beforeTime=currTime;
+        }
+    }
+}
+
+
+
+//第8遍
+
+window.onscroll=throttle(function () {
+    console.log(1);
+
+},1000);
+
+function throttle(fn,time) {
+    var beforeTime =0;
+    return function () {
+        var self=this;
+        var args=arguments;
+        var currTime=+new Date();
+        if(currTime-beforeTime>=time){
+
+            fn.apply(self,args);
+            beforeTime=currTime;
+        }
+    }
+}
+
+
+
+//第9遍
+
+window.onscroll=throttle(function () {
+    console.log(1);
+
+},1000);
+
+function throttle(fn,time) {
+    var beforeTime =0;
+    return function () {
+        var self=this;
+        var args=arguments;
+        var currTime=+new Date();
+        if(currTime-beforeTime>=time){
+
+            fn.apply(self,args);
+            beforeTime=currTime;
+        }
+    }
+}
+
+
+//第10遍
+
+window.onscroll=throttle(function () {
+    console.log(1);
+
+},1000);
+
+function throttle(fn,time) {
+    var beforeTime =0;
+    return function () {
+        var self=this;
+        var args=arguments;
+        var currTime=+new Date();
+        if(currTime-beforeTime>=time){
+
+            fn.apply(self,args);
+            beforeTime=currTime;
+        }
+    }
+}
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+
+
+
+
+//去斗
+window.onscroll=debounce(function () {
+    console.log(1);
+
+},1000);
+
+function debounce(fn ,time) {
+    //闭包里面保存的数据
+    var timer=null;
+    return function () {
+        var self =this;
+        var args=arguments;
+        clearTimeout(timer);//上一次下发还没执行的任务
+        timer=setTimeout(function () {
+            fn.apply(self,args);
+        },time);
+    }
+}
+</script>
+
+</body>
+</html>
