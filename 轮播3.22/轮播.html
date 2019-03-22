@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        #outer {
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+            /*background-color: yellow;*/
+            padding-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imglist {
+            width: 3000px;
+            position: absolute;
+            left: 0px;
+        }
+
+        #imglist li {
+            float: left;
+            /*margin: 0 10px;*/
+
+        }
+        #imglist img {
+            width: 500px;
+        }
+
+        #nav {
+            position: absolute;
+            bottom: 45px;
+            /*left: 220px;*/
+        }
+
+        #nav a {
+            width: 15px;
+            height: 15px;
+            float: left;
+            background-color: deepskyblue;
+            margin: 0 5px;
+            opacity: 0.5;
+        }
+
+        #nav a:hover {
+            background-color: black;
+        }
+        .jiantou{
+            position: absolute;
+            top: 130px;
+
+        }
+        .jiantou span{
+            width: 45px;
+            height: 45px;
+            background-color: #b8c6c7;
+            opacity: 0.5;
+            display: inline-block;
+            text-align: center;
+            line-height: 45px;
+        }
+        #left{
+            margin-right: 410px;
+        }
+    </style>
+    <script src="轮播/tools.js"></script>
+    <script>
+        window.onload = function () {
+           var disble=true;
+           var rgt=document.getElementById("right");
+           var let=document.getElementById("left");
+           rgt.onclick=function () {
+               if (disble){
+               disble=false;
+               index--;
+               
+               }
+           }
+
+
+            var imglist = document.getElementById("imglist");
+            var imgArr = imglist.getElementsByTagName("img");
+            //设置imglist的宽度
+            imglist.style.width = 540 * imgArr.length + "px";
+
+            var nav = document.getElementById("nav");
+            var outer = document.getElementById("outer");
+            nav.style.left = (outer.offsetWidth - nav.offsetWidth) / 2 + "px"
+
+            var index = 0;//默认设置第一个
+            var allA = document.getElementsByTagName("a")
+            allA[index].style.backgroundColor = "black";
+
+
+
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].num = i;
+                allA[i].onclick = function () {
+                    clearInterval(timer)//清除定时
+                    index = this.num;
+
+                    setA();
+                    move(imglist, "left", -500 * index, 20, function () {
+                        change();
+                    });
+                };
+            }
+            change();
+
+
+            function setA() {
+                if (index >= imgArr.length - 1) {
+                    index = 0;
+                    imglist.style.left = 0;
+                }
+                for (var i = 0; i < allA.length; i++) {
+                    allA[i].style.backgroundColor = ""
+                }
+                allA[index].style.backgroundColor = "black";
+            }
+
+
+            var timer;
+            function change() {
+                timer = setInterval(function () {//定时
+                    index++;
+                    index %= imgArr.length;
+                    move(imglist, "left", -500 * index, 20, function () {
+
+                        setA();
+                    })
+                }, 3000)
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="outer">
+    <ul id="imglist">
+        <li><img src="轮播/11.jpg" alt=""></li>
+        <li><img src="轮播/22.jpg" alt=""></li>
+        <li><img src="轮播/33.jpg" alt=""></li>
+        <li><img src="轮播/44.jpg" alt=""></li>
+        <li><img src="轮播/55.jpg" alt=""></li>
+        <li><img src="轮播/11.jpg" alt=""></li>
+    </ul>
+    <div id="nav">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+    </div>
+    <div class="jiantou"><span id="left">&lt;</span><span class="right">&gt;</span></div>
+</div>
+
+</body>
+</html>
