@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <style>
+         *{
+            margin: 0;
+             padding: 0;
+         }
+         .warp{
+             width:310px;
+             height:310px;
+             margin:30px auto;}
+         .ulist{
+             width:310px;
+             height:310px;
+             list-style:none;
+         }
+         .ulist li{width:100px;
+             height:100px;
+             border:1px solid #565656;
+             float:left;
+             text-align:center;
+             line-height:100px;}
+         span{
+             display: block;
+             width: 60px;
+             height: 60px;
+             background: #ffc10a;
+             color: #ffffff;
+             line-height: 60px;
+             text-align: center;
+             border-radius: 4px;
+         }
+         .ulist .active{
+             background:#ffc10a;
+             color:#fff;
+         }
+         #p1{line-height:32px;
+             color:#9a9a9a;
+             text-align:center;
+         }
+
+     </style>
+</head>
+<body>
+<div class="warp">
+            <ul class="ulist">
+                <li>一等奖</li>
+                <li>二等奖</li>
+                <li>三等奖</li>
+                <li>四等奖</li>
+                <li>五等奖</li>
+                <li>六等奖</li>
+                <li>七等奖</li>
+                <li>八等奖</li>
+                <li>九等奖</li>
+            </ul>
+    <span>开始</span>
+    <p id="p1"></p>
+</div>
+<script>
+    var warp = document.querySelector('.warp');
+    var   liAll = warp.getElementsByTagName('li');
+    var   span = warp.getElementsByTagName('span')[0];
+    var   pp = document.getElementById('p1');
+        timer = null;
+    function start(){
+        var i = 0;
+        var num = Math.floor(Math.random() * liAll.length) + 20;
+        if(i<num){
+            timer = setInterval(function(){
+                for(var j=0;j<liAll.length;j++){
+                    liAll[j].className = '';
+                }
+                liAll[i%liAll.length].className = 'active';
+                i++;
+                if(i === num){
+                    clearInterval(timer);
+                    // if(num%liAll.length === 0){
+                    //     pp.innerHTML += "恭喜您中了：9 等奖" + '<br/>';
+                    // }else{
+                    //     pp.innerHTML += "恭喜您中了："+ parseInt(num%liAll.length) + " 等奖"+ '<br/>';
+                    // }
+                }
+            },100);
+        }
+    }
+    span.onclick = function () {
+        start();
+    }
+    // span.onclick = throttle(start(),5000);
+    // function throttle(fn,time) {
+    //     var firstTime = 0;
+    //     return function () {
+    //         var self =this;
+    //         var args = arguments;
+    //         var lastTime = +new Date();
+    //         if (lastTime - firstTime >= time) {
+    //             fn();
+    //             firstTime = lastTime;
+    //         }
+    //
+    //     }
+    // }
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $(function () {
+
+    })
+</script>
+</body>
+</html>
