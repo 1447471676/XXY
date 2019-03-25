@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 533px;
+            height: 300px;
+            margin: 100px auto 0;
+            border: 1px solid #000;
+            /* 让盒子变成一个伸缩容器 */
+            display: flex;
+        }
+
+        /* 第一步  需要制作出一个长方体 */
+        .box ul {
+            width: 533px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .box ul:nth-child(1) {
+            transition-delay: 0s;
+        }
+
+        .box ul:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .box ul:nth-child(3) {
+            transition-delay: 0.4s;
+        }
+
+        .box ul:nth-child(4) {
+            transition-delay: 0.6s;
+        }
+
+        .box>ul>li {
+            /* 这里最好是设置成width:100%  让它继承收缩后的UL的宽度*/
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* 这个切割一定是加给li的 ul加的话会把3D空间给干掉*/
+            overflow: hidden;
+        }
+
+        .box>ul>li:nth-child(1) {
+            transform: rotateX(90deg)  translateZ(150px);
+            /* 上面 */
+        }
+
+        .box>ul>li:nth-child(2) {
+            transform: rotateX(-90deg) translateZ(150px);
+            /* 下面 */
+        }
+
+        .box>ul>li:nth-child(3) {
+            transform: translateZ(150px);
+            /* 正面 */
+        }
+
+        .box>ul>li:nth-child(4) {
+            transform: rotateX(180deg) translateZ(150px);
+            /* 背面 */
+        }
+
+        .box>ul:nth-child(2) img {
+            margin-left: -134px;
+        }
+
+        .box>ul:nth-child(3) img {
+            margin-left: -268px;
+        }
+
+        .box>ul:nth-child(4) img {
+            margin-left: -402px;
+        }
+
+        .btn_wrap {
+            width: 760px;
+            height: 0px;
+            margin: 0 auto;
+            position: relative;
+            top: -250px;
+        }
+
+        .btn_wrap button {
+            width: 100px;
+            height: 100px;
+        }
+
+        .btn_wrap button:nth-child(1) {
+            float: left;
+        }
+
+        .btn_wrap button:nth-child(2) {
+            float: right;
+        }
+        img{
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+            <ul>
+                    <li><img src="../img/lb01.jpg"></li>
+                    <li><img src="../img/lb02.jpg"></li>
+                    <li><img src="../img/lb03.jpg"></li>
+                    <li><img src="../img/lb04.jpg"></li>
+                </ul>
+                <ul>
+                    <li><img src="../img/lb01.jpg"></li>
+                    <li><img src="../img/lb02.jpg"></li>
+                    <li><img src="../img/lb03.jpg"></li>
+                    <li><img src="../img/lb04.jpg"></li>
+                </ul>
+                <ul>
+                    <li><img src="../img/lb01.jpg"></li>
+                    <li><img src="../img/lb02.jpg"></li>
+                    <li><img src="../img/lb03.jpg"></li>
+                    <li><img src="../img/lb04.jpg"></li>
+                </ul>
+                <ul>
+                    <li><img src="../img/lb01.jpg"></li>
+                    <li><img src="../img/lb02.jpg"></li>
+                    <li><img src="../img/lb03.jpg"></li>
+                    <li><img src="../img/lb04.jpg"></li>
+                </ul>
+    </div>
+    <div class="btn_wrap">
+        <button>向上翻转按钮</button>
+        <button>向下翻转按钮</button>
+    </div>
+    <script>
+        // 需求 点击按钮一次，就让长方体沿着X轴旋转90度（是基于上一次的角度累加或者累减）
+        var box = document.querySelector('.box');
+        var _ul = box.querySelectorAll('ul');
+        var _li = box.querySelectorAll('li');
+        var btns = document.querySelectorAll('button');
+        // 声明一个信号量,以便计算需要旋转的度数
+        var num = 0;
+        // 当用户暴力点击的时候会出现过度执行不过来的BUG情况，需要函数节流。声明一个开关变量
+        var flag = true;
+
+        _ul[_ul.length - 1].addEventListener('transitionend', function () {
+            console.log(1);
+            // 在过渡执行完毕之后重新打开开关
+            flag = true;
+        })
+
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].setAttribute('data-index', i);
+            btns[i].addEventListener('click', function () {
+                if (flag) {
+                    flag = false;
+                    // 每次点击进行一次判断后在累加或者累减
+                    // 通过this去找到当前对象的自定义下标
+                    var index = this.dataset['index'];
+                    if (index == 1) {
+                        num++;
+                    } else if (index == 0) {
+                        num--;
+                    }
+                    // 给所有的UL添加翻转效果
+                    for (var i = 0; i < _ul.length; i++) {
+                        _ul[i].style.transform = 'rotateX(' + num * 90 + 'deg)';
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

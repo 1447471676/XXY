@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图-3</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .showBox{
+            position: relative;
+            width: 1500px;
+            height: 410px;
+            margin: 100px auto;
+            /*border: 1px solid slateblue;*/
+            overflow: hidden;
+        }
+        .showBox span{
+            position: absolute;
+            width: 350px;
+            height: 300px;
+            font-size: 80px;
+            line-height: 300px;
+            text-align: center;
+            color: black;
+            font-weight: 800;
+            background: rgba(250,250,250,.1);
+            opacity: 0;
+        }
+        .showBox:hover span{
+            opacity: 1;
+        }
+        #prev{
+            left: 0;
+            top: 0;
+            /*top: 45%;*/
+        }
+        #next{
+            right: 0;
+            top: 0;
+            /*top: 45%;*/
+        }
+        img{
+            width: 500px;
+            height: 300px;
+            float: left;
+        }
+        ul{
+            width: 4500px;
+            height: 300px;
+            position: relative;
+            left: -500px;
+        }
+        li{
+            /*position: absolute;*/
+            float: left;
+            width: 500px;
+            height: 300px;
+            margin-top: 30px;
+            list-style: none;
+            transition: .1s;
+        }
+        .showli{
+            /*position: absolute;*/
+            /*left: 250px;*/
+            transform: scale(1.2);
+            transition: .1s;
+        }
+        .lismall{
+            /*transform: scale(.8);*/
+        }
+        #spot{
+            position: absolute;
+            bottom: 6px;
+            left: 600px;
+            height: 30px;
+            width: 300px;
+            background: rgba(100,100,100,.5);
+            border-radius: 10px;
+        }
+        #spot a{
+            display: inline-block;
+            float: left;
+            margin-top: 6px;
+            margin-left: 25px;
+            width: 31px;
+            height: 20px;
+            border-radius: 15%;
+            background: white;
+        }
+        #spot .showA{
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+<div class="showBox">
+    <ul id="list">
+        <li class="lismall"><img src="./img/lbt%20(4).png" alt=""></li>
+        <li class="lismall"><img src="./img/lbt%20(5).png" alt=""></li>
+        <li class="showli"><img src="./img/lbt%20(1).jpg" alt=""></li>
+        <li class="lismall" ><img src="./img/lbt%20(2).png" alt=""></li>
+        <li class="lismall"><img src="./img/lbt%20(3).png" alt=""></li>
+        <li class="lismall"><img src="./img/lbt%20(4).png" alt=""></li>
+        <li class="lismall"><img src="./img/lbt%20(5).png" alt=""></li>
+        <li class="lismall"><img src="./img/lbt%20(1).jpg" alt=""></li>
+        <li class="lismall" ><img src="./img/lbt%20(2).png" alt=""></li>
+    </ul>
+    <span id="prev"><</span>
+    <span id="next">></span>
+    <div id="spot">
+        <a class="showA"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+</div>
+<script>
+    var list = document.getElementById("list")
+    var prev = document.getElementById("prev")//上一张
+    var next = document.getElementById("next")//下一张
+    var spot = document.getElementById("spot")
+    var allA = spot.getElementsByTagName("a")//五个光标
+    var showli = list.getElementsByTagName("li")//五张图片
+    var newA = Array.from(allA)//把五个光标转为数组
+    var newli = Array.from(showli)//把五张图片转为数组
+
+    var timer = null
+    var timemove = null
+
+    // 自动轮播定时器，封装成函数，可以随时调用
+    function timeOver(){
+        timemove = setInterval(function () {
+            // 获取当前离父盒子的距离，并添加500像素，然后执行动画函数
+            var nowleft = list.offsetLeft - 500
+            imgMove(nowleft)
+        },3000)
+    }
+    timeOver()//先调用一次自动轮播
+
+    function imgMove(placeLeft,Mul = 10) {
+        clearTimeout(timer)
+        clearTimeout(timemove)
+
+        var nowleft = list.offsetLeft
+
+        timer = setInterval(function () {
+            // 当需要往左移时，则当前距离(nowleft)自增
+            if (nowleft <= placeLeft) {
+                nowleft += Mul
+            }else if (nowleft >= placeLeft) {// 当需要往右移时，则当前距离(nowleft)自减
+                nowleft -= Mul
+            }
+            // 当nowleft == leftIndex时，则到了我们想要的位置，就关闭定时器
+            if (nowleft == placeLeft){
+                clearInterval(timer)
+                // 获取当前距离
+                var noleft = list.offsetLeft
+                // 把当前的距离发送给显示光标函数
+                showlist(noleft)
+                showCla(noleft)
+                // 启动自动轮播定时器
+                timeOver()
+                console.log(noleft);
+            }
+            // ul盒子向左移
+
+            list.style.left = nowleft + "px"
+            // 当盒子移到最左时，切换到第五张图
+            if (nowleft == 0){
+                nowleft = -2500
+                list.style.left = nowleft + "px"
+            }else if(nowleft == -3000){// 当盒子移到最右时，切换到第一张图
+                nowleft = -500
+                list.style.left = nowleft + "px"
+            }
+        },1)
+
+    }
+
+    // imgMove(-3000)
+
+    // 节流，至少等待.5s才能切换下一张
+    function throttle(fn,time) {
+        var befortime = 0
+        return function () {
+            var nowtime = +new Date()
+            var args = arguments
+            var self = this
+            if (nowtime - befortime >= time) {
+                fn.apply(self,args)
+                befortime = nowtime
+            }
+        }
+    }
+
+    // 当点上一张时，获取当前距离+500像素，并传给执行函数
+    prev.onclick = throttle(function () {
+        clearTimeout(timemove)
+        var nowleft = list.offsetLeft + 500
+        imgMove(nowleft)
+    },500)
+    // 当点下一张时，获取当前距离-500像素，并传给执行函数
+    next.onclick = throttle(function () {
+        clearTimeout(timemove)
+        var nowleft = list.offsetLeft - 500
+        imgMove(nowleft)
+    },500)
+
+    // 给所有光标进行绑定点击事件
+    for (let i = 0; i < newA.length; i++) {
+        newA[i].onclick = function () {
+            clearInterval(timemove)
+            // 获取当前距离
+            var nowLeft = list.offsetLeft
+            // 获取需要切换到的图片与父盒子的距离，并发送给执行函数
+            var lefIn = -(i+1)*500
+            // 获取两个值的绝对值，判断两个图片直接隔着几张图片，然后切换速度
+            var a = Math.abs(nowLeft)
+            var b = Math.abs(lefIn)
+            var c = Math.abs(a - b)
+            if (c == 500){
+                imgMove(lefIn)
+            } else if (c == 1000){
+                imgMove(lefIn,20)
+            }
+            else if (c == 1500){
+                imgMove(lefIn,30)
+            }else if (c == 2000){
+                imgMove(lefIn,50)
+            }
+            // 把当前点击的光标传给光标函数
+            showlist(i)
+        }
+    }
+
+    // 显示光标函数
+    function showlist(item) {
+        // （bug）如果第一张切换到第五张时，会有像素偏差，所以做了个判断
+        // 然后修改item值，给当前图片添加光标
+        if ((item <= -510  && item >= -550 ) || item == -2990) {
+            item = 0
+        }else if(item < -950 && item > -1050){
+            item = 1
+        }else if(item > -1550 && item < -1450){
+            item = 2
+        }else if(item > -2050 && item < -1950){
+            item = 3
+        }else if(item == -10 || (item >= -2490 && item <= -2450) ){
+            item = 4
+        }
+        // 清空所有光标
+        for (var x = 0; x < newA.length; x++) {
+            newA[x].classList.remove("showA")
+        }
+        // 给当前图片添加光标
+        newA[item].classList.add("showA")
+    }
+
+    function showCla(item) {
+        for (var x = 0; x < showli.length; x++) {
+            showli[x].classList.remove("showli")
+        }
+
+        if ((item <= -510  && item >= -550 ) || item == -2990) {
+            item = 2
+        }else if(item < -950 && item > -1050){
+            item = 3
+        }else if(item > -1550 && item < -1450){
+            item = 4
+        }else if(item > -2050 && item < -1950){
+            item = 5
+        }else if(item == -10 || (item >= -2490 && item <= -2450) ){
+            item = 6
+        }
+
+        // 给当前图片添加光标
+        showli[item].classList.add("showli")
+    }
+</script>
+
+</body>
+</html>

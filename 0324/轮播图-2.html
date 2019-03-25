@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图-2</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .showBox{
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid slateblue;
+            /*overflow: hidden;*/
+        }
+        .showBox span{
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: rgba(250,250,250,.8);
+        }
+        #prev{
+            left: 0;
+            top: 45%;
+        }
+        #next{
+            right: 0;
+            top: 45%;
+        }
+        img{
+            width: 500px;
+            height: 300px;
+            float: left;
+        }
+        ul{
+            width: 3500px;
+            height: 300px;
+            position: relative;
+        }
+        li{
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            list-style: none;
+
+        }
+
+        .showstar{
+            visibility: hidden;
+            opacity: 0;
+            transition: .7s;
+        }
+        .showOver{
+            visibility: visible;
+            opacity: 1;
+            transition: .7s;
+        }
+        #spot{
+            position: absolute;
+            bottom: 20px;
+            left: 200px;
+            height: 20px;
+            width: 100px;
+            background: rgba(250,250,250,.5);
+            border-radius: 10px;
+        }
+        #spot a{
+            display: inline-block;
+            float: left;
+            margin-top: 6px;
+            margin-left: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+        #spot .showA{
+            background: orangered;
+        }
+
+    </style>
+</head>
+<body>
+<div class="showBox">
+    <ul id="list">
+        <li class="showOver"><img src="../img/lb01.jpg" alt=""></li>
+        <li class="showstar"><img src="../img/lb02.jpg" alt=""></li>
+        <li class="showstar"><img src="../img/lb03.jpg" alt=""></li>
+        <li class="showstar"><img src="../img/lb04.jpg" alt=""></li>
+        <li class="showstar"><img src="../img/lb05.jpg" alt=""></li>
+    </ul>
+    <span id="prev"><</span>
+    <span id="next">></span>
+    <div id="spot">
+        <a class="showA"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+</div>
+
+<script>
+    var list = document.getElementById("list")
+    var prev = document.getElementById("prev")//上一张
+    var next = document.getElementById("next")//下一张
+    var spot = document.getElementById("spot")
+    var allA = spot.getElementsByTagName("a")//五个光标
+    var showli = list.getElementsByTagName("li")//五张图片
+    var newA = Array.from(allA)//把五个光标转为数组
+    var newli = Array.from(showli)//把五张图片转为数组
+
+    // 默认第一张显示，设置索引
+    var x = 0
+    var timer = null
+
+    function imgMove(){
+        timer = setInterval(function () {
+            x++
+            if (x > 4 ){
+                x = 0
+            }
+            showMove(x)
+            showlist(x)
+        },3000)
+    }
+    imgMove()
+
+    // 显示图片函数
+    function showMove(index) {
+        // 给所有图片清除显示class，并添加消失class
+        for (var i = 0; i < newli.length; i++) {
+            newli[i].classList.remove("showOver")
+            newli[i].classList.add("showstar")
+        }
+        // 给需要显示的图片进行添加显示class
+        newli[index].classList.add("showOver")
+    }
+
+    // 节流，至少等待.5s才能切换下一张
+    function throttle(fn,time) {
+        var befortime = 0
+        return function () {
+            var nowtime = +new Date()
+            var args = arguments
+            var self = this
+            if (nowtime - befortime >= time) {
+                fn.apply(self,args)
+                befortime = nowtime
+            }
+        }
+    }
+
+    // 点击上一张
+    prev.onclick = throttle(function () {
+        clearInterval(timer)
+        // 索引自减，如果到第一张图之后变为第五张图片，并发送给显示函数和显示光标函数
+        x--
+        if (x < 0 ){
+            x = 4
+        }
+        showMove(x)
+        showlist(x)
+        // 开启自动轮播
+        imgMove()
+    },500)
+
+    // 点击下一张，同理如上
+    next.onclick = throttle(function () {
+        clearInterval(timer)
+        x++
+        if (x > 4 ){
+            x = 0
+        }
+        showMove(x)
+        showlist(x)
+        // 开启自动轮播
+        imgMove()
+    },500)
+
+    // 给五个光标添加点击事件
+    for (let i = 0; i < newA.length; i++) {
+        newA[i].onclick = function () {
+            // 给当前被点击的光标发送给显示函数和显示光标函数，直接发送索引
+            showlist(i)
+            showMove(i)
+        }
+    }
+
+    // 显示光标函数
+    function showlist(item) {
+        // 清空所有光标
+        for (var x = 0; x < newA.length; x++) {
+            newA[x].classList.remove("showA")
+        }
+        // 给当前图片添加光标
+        newA[item].classList.add("showA")
+    }
+</script>
+</body>
+</html>
