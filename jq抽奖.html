@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td {
+            width: 100px;
+            height: 100px;
+            /*border: 1px solid black;*/
+        }
+
+        #aa {
+            background-color: red;
+        }
+
+        .bb {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td id="aa"></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<button class="bb">跑</button>
+<script>
+    window.onload = function () {
+            var bb = document.querySelector(".bb");
+            var td = document.querySelectorAll("td")
+            bb.onclick = function () {
+                document.getElementById("aa").id = "";
+                var c = Math.floor(Math.random() * 9);
+                // console.log(c)
+                td[c].id = "aa";
+
+            }
+
+        }
+    }
+
+    // }
+
+</script>
+</body>
+</html>

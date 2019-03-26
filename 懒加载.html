@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="./tuupola-jquery_lazyload-2cfbdb5/jquery.lazyload.min.js"></script>
+    <script src="tuupola-jquery_lazyload-2cfbdb5/jquery.scrollstop.min.js"></script>
+    <style>
+        img{
+            margin-bottom: 200px;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+<body>
+<!--<img src="./tuupola-jquery_lazyload-2cfbdb5/img/corvette_pitstop.jpg" alt="">-->
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<img alt="" width="640" height="480" data-original="./tuupola-jquery_lazyload-2cfbdb5\img\corvette_pitstop.jpg">
+<script>
+$(document).ready(function () {
+    // $(function () {
+    //     $("img").lazyload();
+    // });
+    $("img").lazyload({
+        threshold :200
+    });
+})
+</script>
+</body>
+</html>
