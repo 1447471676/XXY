@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3-25jQWork</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap {
+            height: 500px;
+            background: aqua;
+            padding-top: 50px;
+        }
+        .btn {
+            overflow: hidden;
+            width: 100px;
+            height: 40px;
+            background: rgb(180,180,180);
+            margin: 0 auto;
+            border-radius: 20px;
+            transition: .5s;
+        }
+        .showlist {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgb(220,220,220);
+            margin: 2px;
+            transition: .5s;
+        }
+
+        .showOpen {
+            background: #0bf781;
+            transition: .5s;
+        }
+
+        .showMove {
+            background: white;
+            transition: .5s;
+            transform: translateX(60px);
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        .nav {
+            margin: 60px auto;
+            width: 400px;
+            background: deepskyblue;
+        }
+        .menu {
+            background: deepskyblue;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            border-bottom: 1px solid white;
+        }
+        .menu a {
+            display: block;
+            height: 50px;
+        }
+        .menu .iteam{
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: skyblue;
+            opacity: 1;
+            transition: 3s;
+        }
+        .list1{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a href="javascript:;">
+        <div class="btn showOpen" id="btn" b>
+            <div class="showlist showMove" id="qiu"></div>
+        </div>
+    </a>
+
+    <div class="nav">
+        <div class="menu" id="menu1">
+            <a href="javascript:;">menu1</a>
+            <div class="list1">
+                <div class="iteam">iteam1</div>
+                <div class="iteam">iteam2</div>
+                <div class="iteam">iteam3</div>
+            </div>
+
+        </div>
+        <div class="menu">
+            <a href="javascript:;">menu2</a>
+            <div class="list1">
+                <div class="iteam">iteam1</div>
+                <div class="iteam">iteam2</div>
+                <div class="iteam">iteam3</div>
+            </div>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">menu3</a>
+            <div class="list1">
+                <div class="iteam">iteam1</div>
+                <div class="iteam">iteam2</div>
+                <div class="iteam">iteam3</div>
+            </div>
+        </div>
+        <div class="menu">
+            <a href="javascript:;">menu4</a>
+            <div class="list1">
+                <div class="iteam">iteam1</div>
+                <div class="iteam">iteam2</div>
+                <div class="iteam">iteam3</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $('#btn').click(function () {
+        $('#btn').toggleClass('showOpen')//toggleClass：切换class，有则删除，无则添加
+        $('#qiu').toggleClass('showMove')
+    })
+    for (let i = 0; i < $('.menu').length; i++) {//循环添加点击事件
+        $('.menu')[i].onclick = function(){
+            $(this).children('.list1').slideToggle("slow")//给他本身的儿子切换滑入效果--slideToggle：切换消失隐藏并以.6s完成动画
+        }
+    }
+</script>
+</body>
+</html>

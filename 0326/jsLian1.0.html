@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链式调用</title>
+</head>
+<body>
+<div class="testBox">class盒子</div>
+<div class="testBox">class盒子</div>
+<div class="testBox">class盒子</div>
+<div id="testBox" class="qqwwee">id盒子</div>
+<script>
+
+        // 先在window下定义一个$函数
+        window.$ = function (ele) {
+            // 然后去new一个jQ实例对象，并返回
+            return new jQ(ele)
+        }
+        // 创建函数jQ，传入的是选择器，定义一个变量来接收此伪数组
+        function jQ(selector) {
+            this.elements = document.querySelectorAll(selector)
+            this.arrList = []//创建空数组，为选择同级其他元素（siblings）而创建，
+            return this
+        }
+        // 把所有方法都加在jQ原型上
+        jQ.prototype = {
+            //测试
+            show: function () {
+                console.log("yes");
+                this.equery = null
+                return this
+            },
+            // 传入index，创建一个变量，接受elements里第index个元素
+            eq: function (index) {
+                this.equery = this.elements[index]
+                this.suoyin = index//创建当前索引
+                return this//每次都要return this，给后面能继续使用方法
+            },
+            // 传入class名
+            addClass: function (iteam) {
+                // 如果之前有创建siblings，则把数组里面的都添加此class
+                if (this.arrList.length !== 0) {
+                    //forEach循环，给数组里所有的都添加class
+                    this.arrList.forEach(function (itm, index) {
+                        itm.classList.add(iteam)
+                    })
+                }else if(this.equery !== undefined){
+                    //如果之前有使用eq，equery就不会等于undefined，使用了则给当前选择的元素添加class
+                    this.equery.classList.add(iteam)
+                } else{
+                    // 如果之前没有eq也没有siblings，就给elements里面所有的元素添加class
+                    for (let i = 0; i <this.elements.length ; i++) {
+                        this.elements[i].classList.add(iteam)
+                    }
+                }
+                return this
+            },
+            siblings: function () {
+                this.arrList = []
+                for (let i = 0; i < this.elements.length; i++) {
+                    // 使用该方法之后就循环遍历，把elements里面的元素push进数组，当suoyin=i时，就跳过
+                    if (this.suoyin !== i) {
+                        this.arrList.push(this.elements[i])
+                    }
+                }
+                return this
+            },
+            removeClass: function (iteam) {
+                // 如果之前有用siblings，就把arrlist里面的数组给删除class
+                if (this.arrList.length !== 0) {
+                    this.arrList.forEach(function (itm, index) {
+                        itm.classList.remove(iteam)
+                    })
+                } else if (this.elements.length !== 0) {
+                    // 如果elements的长度不为0才可以遍历删除class
+                    for (let i = 0; i <this.elements.length ; i++) {
+                        this.elements[i].classList.remove(iteam)
+                    }
+                }
+                return this
+            }
+        }
+
+
+    // $('.testBox').eq(1).addClass('showBox').siblings().removeClass('testBox').addClass('hehe')
+    // $('.testBox').addClass('hh').removeClass('testBox').eq(1).addClass('heihei').siblings().addClass('qieqie').removeClass('hh')
+    // $('#testBox').removeClass('testBox').addClass('yeyeye').removeClass('yeyeye')
+    // $('div').addClass('hh').siblings().removeClass('testBox')
+    // console.log($('.testBox'));
+</script>
+</body>
+</html>
