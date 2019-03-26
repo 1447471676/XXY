@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        #Test{
+            width: 300px;
+            height: 100px;
+          background-color: yellow;
+            line-height: 40px;
+        }
+        ul{
+            display: flex;
+            justify-content: space-around;
+
+        }
+        ul li{
+            list-style: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+           background: linear-gradient(lawngreen,pink);
+
+        }
+        .aa{
+            background: lawngreen;
+        }
+    </style>
+</head>
+<body>
+<div id="Test">
+    <ul>
+        <li class="aa"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script>
+    $(document).ready(function () {
+    $("#Test").css('background','yellow').show(200).removeClass("aa");
+    $("ul li").click(function () {
+        $(this).addClass("aa").siblings()
+        .removeClass("aa")
+    })
+
+
+
+
+
+
+
+    // function f() {
+    //     this.pao=function () {
+    //         console.log("跑");
+    //         return this
+    //     }
+    //
+    //     this.run=function () {
+    //         console.log("走");
+    //         return this;
+    //     }
+    // }
+    // var a=new f();
+    // a.pao().run();
+    // })
+</script>
+</body>
+</html>
