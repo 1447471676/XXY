@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js模拟jq链式</title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        ul li{
+            width: 60px;
+            height: 60px;
+            background: #ffc10a;
+            border-radius: 50%;
+            float: left;
+            margin-right: 20px;
+        }
+        ul .active{
+            background: radial-gradient(deeppink,blueviolet);
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    // $(function () {
+    //         let click = $("li").click(function () {
+    //             // $(this).addClass("active").siblings().removeClass("active");
+    //             $("li").eq($(this).index()).addClass("active").siblings().removeClass("active");
+    //         });
+    // })
+    window.Ele = function (selector){
+        return new _Ele(selector);
+    }
+    function _Ele(selector) {
+        this.elements = document.querySelectorAll(selector);
+    }
+    _Ele.prototype = {
+        method : function(name, fn){
+            if(this.elements){
+                this.elements.addEventListener(name, fn, false);
+            }
+            return this;
+            },
+        // 传入index，创建一个变量，接受elements里第index个元素
+        "eq":function (index) {
+            this.e = this.elements[index];
+            this.dex =index;
+            return this;
+        },
+        "addClass":function (iteam) {
+            // 如果之前有创建siblings，则把数组里面的都添加此class
+            if (this.arrList.length !== 0) {
+                //forEach循环，给数组里所有的都添加class
+                this.arrList.forEach(function (itm, index) {
+                    itm.classList.add(iteam)
+                })
+            }else if(this.equery !== undefined){
+                //如果之前有使用eq，equery就不会等于undefined，使用了则给当前选择的元素添加class
+                this.equery.classList.add(iteam)
+            } else{
+                // 如果之前没有eq也没有siblings，就给elements里面所有的元素添加class
+                for (let i = 0; i <this.elements.length ; i++) {
+                    this.elements[i].classList.add(iteam)
+                }
+            }
+            return this;
+        },
+        "siblings":function () {
+            this.arrList = []
+            for (let i = 0; i < this.elements.length; i++) {
+                // 使用该方法之后就循环遍历，把elements里面的元素push进数组，当suoyin=i时，就跳过
+                if (this.suoyin !== i) {
+                    this.arrList.push(this.elements[i])
+                }
+            }
+            return this
+        },
+        "removeClass":function (iteam) {
+            // 如果之前有用siblings，就把arrlist里面的数组给删除class
+            if (this.arrList.length !== 0) {
+                this.arrList.forEach(function (itm, index) {
+                    itm.classList.remove(iteam)
+                })
+            } else if (this.elements.length !== 0) {
+                // 如果elements的长度不为0才可以遍历删除class
+                for (let i = 0; i <this.elements.length ; i++) {
+                    this.elements[i].classList.remove(iteam)
+                }
+            }
+            return this
+        }
+    }
+    // Ele("li").method("click",function () {
+    //         Ele("li").eq().addClass("active").siblings().removeClass("active");
+    // })
+</script>
+</body>
+</html>
