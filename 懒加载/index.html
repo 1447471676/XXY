@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载</title>
+
+    <style type="text/css">
+        #box {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #box li {
+            list-style: none;
+            width: 180px;
+            height: 250px;
+            border: 1px solid black;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        #box img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+
+
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+            <li><img alt="懒加载" _src="img/1.jpg" /></li>
+            <li><img alt="懒加载" _src="img/2.jpg" /></li>
+            <li><img alt="懒加载" _src="img/3.jpg" /></li>
+            <li><img alt="懒加载" _src="img/4.jpg" /></li>
+            <li><img alt="懒加载" _src="img/5.jpg" /></li>
+            <li><img alt="懒加载" _src="img/6.jpg" /></li>
+            <li><img alt="懒加载" _src="img/7.jpg" /></li>
+            <li><img alt="懒加载" _src="img/8.jpg" /></li>
+            <li><img alt="懒加载" _src="img/9.jpg" /></li>
+            <li><img alt="懒加载" _src="img/10.jpg" /></li>
+            <li><img alt="懒加载" _src="img/11.jpg" /></li>
+            <li><img alt="懒加载" _src="img/12.jpg" /></li>
+            <li><img alt="懒加载" _src="img/13.jpg" /></li>
+            <li><img alt="懒加载" _src="img/14.jpg" /></li>
+            <li><img alt="懒加载" _src="img/15.jpg" /></li>
+            <li><img alt="懒加载" _src="img/16.jpg" /></li>
+            <li><img alt="懒加载" _src="img/17.jpg" /></li>
+            <li><img alt="懒加载" _src="img/18.jpg" /></li>
+            <li><img alt="懒加载" _src="img/19.jpg" /></li>
+            <li><img alt="懒加载" _src="img/20.jpg" /></li>
+            <li><img alt="懒加载" _src="img/21.jpg" /></li>
+            <li><img alt="懒加载" _src="img/22.jpg" /></li>
+            <li><img alt="懒加载" _src="img/23.jpg" /></li>
+            <li><img alt="懒加载" _src="img/24.jpg" /></li>
+
+        </ul>
+
+
+
+    </div>
+
+
+
+
+
+    <script type="text/javascript">
+        //获取所有图片
+        var aImage = document.getElementsByTagName('img');
+        //获取可视区高度
+        var height = document.documentElement.clientHeight;
+
+        //当滚动时触发
+        window.onload = window.onscroll = function () {
+            //得到滚动卷起高度
+            var scrollTop = document.documentElement.scrollTop;
+            //遍历所有图片
+            for (var i = 0; i < aImage.length; i++) {
+                //获取该图片举例网页顶部和可视区高度,判断是否显示
+                //距网页顶部高度
+                var top = aImage[i].offsetTop;
+                // console.log('scrollTop=' + scrollTop);
+                // console.log(top + "<=" + height + scrollTop);
+         
+                if (top <= height + scrollTop) {
+                    aImage[i].src = aImage[i].getAttribute('_src');
+                }
+            }
+
+        };
+
+
+   //节流
+   function throttle(fn,time) {
+        var beforeTime =0;
+        return function () {//暴露出去的函数
+            var self=this;
+            var args=arguments;
+            var currTime=+new Date();
+            if(currTime-beforeTime>=time){
+                //执行了一次
+                fn.apply(self,args);
+                beforeTime=currTime;
+            }
+        }
+    }
+        
+    </script>
+</body>
+
+</html>
