@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>链式调用</title>
+</head>
+<body>
+
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+
+<script>
+
+  /*
+    第一个步骤： 创建一个新的对象
+    第二个步骤： 将构造函数的作用域指向新的对象 实质就是将构造函数的 this 指向 新对象
+    第三个步骤： 执行构造函数中的代码 为这个新对象添加属性 通过给this添加属性
+    第四个步骤： 返回新对象
+  */
+
+window.JQUERY = window.$ = function(selector){
+  return new JqueryConstructor(selector); // 可操作的DOM对象
+}
+
+
+
+
+
+// 现在来创建一个构造函数 用来创建包裹DOM对象的对象
+// 该方法不能直接执行
+function JqueryConstructor(selector){
+  var nList = document.querySelectorAll(selector);
+  this.eles = Array.prototype.slice.call(nList,0);
+  this.tempEles =  this.eles.slice(0); // 用来临时存dom集合
+  return this;
+}
+
+// 在方法原型上添加公共的方法 所有的对象都可以调用
+
+JqueryConstructor.prototype = {
+  addClass : function(className){
+    // 给获取到的元素添加类名
+    this.tempEles.forEach(function(item,index){
+      item.classList.add(className);
+    });
+    return this;
+  },
+  removeClass: function(className){
+    // 获取要操作的元素
+    this.tempEles.forEach(function(item,index){
+      item.classList.remove(className);
+    });
+
+    return this;
+  },
+  eq : function(index){
+    this.tempEles = []; // 先清空临时暂存数组
+    this.tempEles.push(this.eles[index]); // 在将目标dom 推入进去
+    return this;
+  }
+}
+
+$(".box").eq(1).addClass("第二个添加类名").eq(0).addClass("第一个类名");
+
+
+
+
+</script>
+</body>
+</html>
