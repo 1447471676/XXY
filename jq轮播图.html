@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .wrap{
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .img_all{
+            position: absolute;
+            width: 3640px;
+            height: 280px;
+            top: 0;
+            left: -520px;
+        }
+        img{
+            width: 520px;
+            height: 280px;
+            float: left;
+        }
+        .dian{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        span{
+            background: white;
+            border-radius: 50%;
+            padding: 0 5px;
+            margin-right: 5px;
+        }
+        .qq{
+            background: #ffc10a;
+        }
+        .left{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        .right{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="img_all">
+            <img src="img/5.jpg" alt="" title="第一张">
+            <img src="img/1.jpg" alt="" title="第二张">
+            <img src="img/2.jpg" alt="" title="第三张">
+            <img src="img/3.jpg" alt="" title="第四张">
+            <img src="img/4.jpg" alt="" title="第五张">
+            <img src="img/5.jpg" alt="" title="第六张">
+            <img src="img/1.jpg" alt="" title="第七张">
+        </div>
+        <div class="dian">
+            <span class="qq">1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+        </div>
+        <button class="left"><</button>
+        <button class="right">></button>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $(function () {
+        var index =1;
+        var timer;
+        var bool = true;
+        /* 自动轮播 */
+        timer=setInterval(function () {
+            index++;
+            dongHua(index);
+            suoYin();
+        },2000);
+        /* 移上去暂停，移出动画开始 */
+        $(".wrap").hover(function () {
+            clearInterval(timer);
+        },function () {
+            timer = setInterval(function () {
+                index++;
+                dongHua(index);
+                suoYin();
+            },2000)
+        })
+        /* 左右点击 */
+        $(".left").click(function () {
+            if (bool){
+            index --;
+            dongHua(index);
+            suoYin();
+        }
+        bool=false;
+        })
+        $(".right").click(function () {
+            if (bool){
+            index ++;
+            dongHua(index);
+            suoYin();
+            }
+            bool=false;
+        })
+        /* 下标点击 */
+        $(".dian span").click(function () {
+            index = $(this).index()+1
+            dongHua(index);
+            suoYin();
+        })
+        /* 定义一个动画 */
+        function dongHua(index) {
+            $(".img_all").animate({
+                "left":-index * 520 + "px"
+            },600,"swing",function () {
+                if (index === 6) {
+                    $(".img_all").css("left",-520)
+                }
+                if (index === 0){
+                    $(".img_all").css("left",-520 * 5)
+                }
+                bool= true;
+            })
+        }
+
+    /* 定义一个索引函数 */
+    function suoYin() {
+        if (index === 6){
+            index = 1;
+        }else if (index === 0){
+            index = 5
+        }
+        $(".dian span").removeClass();
+        $(".dian span").eq(index - 1).addClass("qq");
+    }
+    })
+</script>
+</html>
