@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width:300px;
+            height:200px;
+            border:1px solid red;
+            margin:0 auto;
+            overflow:hidden;
+            position:relative;
+        }
+        .box {
+            width:1500px;
+            height:200px;
+            position:absolute;
+            left:0;
+        }
+        .box>img {
+            width:300px;
+            height:200px;
+            float:left;
+        }
+        .btn {
+            position:relative;
+        }
+        .btn>span {
+            width:20px;
+            height:20px;
+            float:left;
+            background-color:black;
+            position:absolute;
+            bottom:20px;
+            z-index:99;
+        }
+        .box>span:nth-child(6) {
+            left:20px;
+        }
+        .box>span:nth-child(7) {
+            left:60px;
+        }
+        .box>span:nth-child(8) {
+            left:100px;
+        }
+        .box>span:nth-child(9) {
+            left:140px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="box">
+    <div class="box">
+        <img src="http://www.jq22.com/img/cs/500x300-1.png" alt="">
+        <img src="http://www.jq22.com/img/cs/500x300-2.png" alt="">
+        <img src="http://www.jq22.com/img/cs/500x300-3.png" alt="">
+        <img src="http://www.jq22.com/img/cs/500x300-4.png" alt="">
+        <img src="http://www.jq22.com/img/cs/500x300-5.png" alt="">
+        <div class="btn">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+        </div>
+
+    </div>
+
+</div>
+<script src="jq文件/jquery-1.9.1.min.js"></script>
+<script>
+    var index = 0;
+    $(function() {
+        // function left() {
+        setInterval(function () {
+
+            $(".box").animate({
+                left: -300 - 300 * index + 'px'
+            }, 500, function () {
+                var left = parseInt($(".box").css('left'));
+                if (left == -1200) {
+                    index = 0;
+                    $(".box").css('left', -300 * index + 'px');
+                } else {
+                    index++;
+                }
+            });
+        },1000)
+    // }
+        // var t = setInterval(left, 1000)
+
+    })
+</script>
+</body>
+</html>
