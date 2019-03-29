@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		
+		.wrap {
+			position: relative;
+			margin: 130px auto;
+			height: 300px;
+			width: 500px;
+			border: 1px solid #000000;
+			overflow: hidden;
+		}
+		
+		.wrap_cen {
+			position: absolute;
+			height: 300px;
+			width: 3000px;
+			left: -500px;
+		}
+		
+		img {
+			float: left;
+			height: 300px;
+			width: 500px;
+		}
+		
+		.left {
+			position: absolute;
+			cursor: pointer;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 20px;
+			width: 20px;
+			z-index: 99;
+			background-color: #FFFFFF;
+		}
+		
+		.right {
+			position: absolute;
+			cursor: pointer;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			height: 20px;
+			width: 20px;
+			z-index: 99;
+			background-color: #FFFFFF;
+		}
+		
+		.num {
+			position: absolute;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		
+		i {
+			display: inline-block;
+			margin: 0 5px;
+			height: 10px;
+			width: 10px;
+			border: 2px solid #FFFFFF;
+			border-radius: 50%;
+		}
+		
+		.on {
+			background-color: #FFFFFF !important;
+		}
+	</style>
+
+	<body>
+		<div class="wrap">
+			<div class="wrap_cen">
+				<img src="../img/lb01.jpg" />
+				<img src="../img/lb02.jpg" />
+				<img src="../img/lb03.jpg" />
+				<img src="../img/lb04.jpg" />
+			</div>
+			<div class="num">
+
+			</div>
+			<button class="left">&lt;</button>
+			<button class="right">&gt;</button>
+		</div>
+	</body>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+	<script type="text/javascript">
+		var size = $(".wrap_cen img").length;
+		for(var i = 0; i < size; i++) {
+			$(".num").append("<i class='xixi'></i>");
+		}
+		$(".wrap_cen").append($("img").eq(0).clone());
+		$(".wrap_cen").prepend($("img").eq(size - 1).clone());
+		$(".xixi").eq(0).addClass("on");
+		var i = 1;
+
+		function lbt() {
+			if(i > 4) {
+				i = 1;
+				$(".wrap_cen").css("left", "0");
+			}
+			if(i < 0) {
+				i = size - 1;
+				$(".wrap_cen").css("left", (i + 1) * -500 + "px");
+				$(".num i").eq(i).addClass("on").siblings().removeClass("on");
+			}
+			//			console.log(i);
+			$(".wrap_cen").stop().animate({
+				"left": i * -500 + "px"
+			}, 500)
+			$(".num i").eq(i - 1).addClass("on").siblings().removeClass("on");
+		}
+		$(".left").click(function() {
+			i--;
+			lbt();
+		});
+		$(".right").click(function() {
+			i++;
+			lbt();
+		});
+		var lbt1 = setInterval(function() {
+			i++;
+			lbt();
+		}, 2000);
+		$(".wrap").hover(function() {
+			clearInterval(lbt1);
+		}, function() {
+			lbt1 = setInterval(function() {
+				i++;
+				lbt();
+			}, 2000);
+		})
+		$(".num i").click(function(){
+			i=$(this).index()+1;
+			lbt();
+		})
+	</script>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQ轮播图-1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .showBox {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid slateblue;
+            overflow: hidden;
+        }
+
+        .showBox span {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: rgba(250, 250, 250, .8);
+        }
+
+        #prev {
+            left: 0;
+            top: 45%;
+        }
+
+        #next {
+            right: 0;
+            top: 45%;
+        }
+
+        img {
+            width: 500px;
+            height: 300px;
+            float: left;
+        }
+
+        ul {
+            width: 3500px;
+            height: 300px;
+            position: relative;
+            /*left: -500px;*/
+            /*transform: translateX(-100px);*/
+        }
+
+        li {
+            width: 500px;
+            height: 300px;
+            list-style: none;
+            float: left;
+        }
+
+        #spot {
+            position: absolute;
+            bottom: 20px;
+            left: 200px;
+            height: 20px;
+            width: 100px;
+            background: rgba(250, 250, 250, .5);
+            border-radius: 10px;
+        }
+
+        #spot a {
+            display: inline-block;
+            float: left;
+            margin-top: 6px;
+            margin-left: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        #spot .showA {
+            background: orangered;
+            /*transform:;*/
+        }
+    </style>
+</head>
+<body>
+<div class="showBox">
+    <ul id="list">
+        <!--<li><img src="./img/lbt%20(5).png" alt=""></li>-->
+        <li><img src="./img/lbt%20(1).jpg" alt=""></li>
+        <li><img src="./img/lbt%20(2).png" alt=""></li>
+        <li><img src="./img/lbt%20(3).png" alt=""></li>
+        <li><img src="./img/lbt%20(4).png" alt=""></li>
+        <li><img src="./img/lbt%20(5).png" alt=""></li>
+        <li><img src="./img/lbt%20(1).jpg" alt=""></li>
+    </ul>
+    <span id="prev"><</span>
+    <span id="next">></span>
+    <div id="spot">
+        <a class="showA"></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+
+    // 自动轮播定时器
+    function timer() {
+         timeMove = setInterval(function () {
+             // 获取当前的left值-500，然后取整，传入显示图片函数
+            showImg(Math.round($("#list").position().left - 500))
+        },3000)
+    }
+    // 开启定时器，自动轮播
+    timer()
+
+    // 显示图片函数
+    function showImg(posiLeft) {
+        // 每次显示图片时先清除定时器
+        clearInterval(timeMove)
+        // 如果到第一张图片了，还要继续点前一张，则先切换到最后一张，再开始滑入
+        if (posiLeft == 500) {
+            $("#list").animate({left: "-2500px"}, 1)
+            posiLeft = "-2000"
+        }else if(posiLeft == -3000){
+            // 如果到最后一张图片了，还要继续点下一张，则先切换到第一张，再开始滑入
+            $("#list").animate({left: "0px"}, 1)
+            posiLeft = "-500"
+        }
+        // 执行动画，时间为.3秒，执行到传入进来的图片地址
+        $("#list").animate({left: "" + posiLeft + "px"}, 300)
+        showSpot(posiLeft)//把需要显示的光标传给显示光标函数
+        timer()//开启定时器
+    }
+    // 点击上一张时，则把当前位置+500传给显示图片函数
+    $('#prev').click(throttle(function () {
+        showImg(Math.round($("#list").position().left + 500))
+    },600))
+    // 点击下一张时，则把当前位置-500传给显示图片函数
+    $('#next').click(throttle(function () {
+        showImg(Math.round($("#list").position().left - 500))
+    },600))
+    // 当点击光标时，获取当前索引，传给显示光标函数，获取需要显示图片的位置值，传给显示图片函数
+    $('#spot a').click(function () {
+        showSpot($(this).index())
+        showImg($(this).index()*-500)
+    })
+    // 显示光标函数
+    function showSpot(index) {
+        // 先进行判断，看现在是轮播到第几张图了，然后给对应光标进行添加class
+        if (index == -500){
+            index = 1
+        } else if(index == -1000){
+            index = 2
+        }else if(index == -1500){
+            index = 3
+        }else if(index == -2000){
+            index = 4
+        }else if(index == -2500){
+            index = 0
+        }else if(index == 0){
+            index = 0
+        }
+        $('#spot a').removeClass('showA').eq(index).addClass('showA')
+    }
+
+    // 节流
+    function throttle(fn,time) {
+        var befortime = 0
+        return function () {
+            var nowtime = +new Date()
+            var args = arguments
+            var self = this
+            if (nowtime - befortime >= time) {
+                fn.apply(self,args)
+                befortime = nowtime
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
