@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .sk_list_inner{
+            position: relative;
+            width: 800px;
+            height: 275px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        .slider_control {
+            position: absolute;
+            top: 50%;
+            border-radius: 0;
+            width: 20px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #d9d9d9;
+            background-color: rgba(0,0,0,.15);
+            margin-top: -20px;
+            font-size: 20px;
+            z-index: 2;
+            border: none;
+            outline: none;
+            transition: background-color .2s ease;
+            text-align: center;
+        }
+        .sk .slider_control {
+            top: 110px;
+        }
+        .slider_control_prev {
+            left: 0;
+        }
+        .slider_control_next {
+            right: 0;
+        }
+        .slider_control i {
+            color: #fff;
+            color: hsla(0,0%,100%,.4);
+            transition: color .2s ease;
+        }
+/*        .slider_list{
+            overflow: hidden;
+        }*/
+        .slider_wrapper{
+            opacity: 1;
+            width: 4000px;
+            left: -800px;
+            position: absolute;
+            top: 0;
+        }
+        .all{
+            float: left;
+            width: 800px;
+            height: 275px;
+        }
+        .sk_item {
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 275px;
+        }
+        .slider_item {
+            height: 100%;
+            min-height: 1px;
+        }
+        .sk_item_lk {
+            position: relative;
+            display: block;
+            width: 190px;
+            height: 275px;
+            text-align: center;
+            margin: auto;
+        }
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+        .sk_item_img {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            left: 50%;
+            margin-left: -70px;
+            top: 40px;
+            transition: opacity ease 0.2s;
+            overflow: hidden;
+            background: transparent;
+        }
+        .lazyimg_loaded .lazyimg_img {
+            opacity: 1;
+        }
+    .lazyimg_img {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    }
+    img {
+    border: 0;
+    vertical-align: middle;
+    }
+    </style>
+</head>
+<body>
+<div class="sk_list_inner">
+    <button class="slider_control slider_control_prev"><i class="iconfont icon-right"></i></button>
+    <button class="slider_control slider_control_next"><i class="iconfont icon-arrow-right"></i></button>
+        <div class="slider_wrapper">
+            <div class="all">
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="all">
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            </div>
+            <div class="all">
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/16666/23/13164/183342/5c9d8c1aEce83f989/37904d537f9b4896.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/16666/23/13164/183342/5c9d8c1aEce83f989/37904d537f9b4896.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/16666/23/13164/183342/5c9d8c1aEce83f989/37904d537f9b4896.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/16666/23/13164/183342/5c9d8c1aEce83f989/37904d537f9b4896.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            </div>
+            <div class="all">
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                <a href="javascript:;" class="sk_item_lk">
+                    <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/19877/12/5381/319124/5c3c6223E5551d4b5/6bfea3c452543180.jpg!q90.webp" class="lazyimg_img">
+                    </div>
+                </a>
+            </div>
+            </div>
+            <div class="all">
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+                <div class="slider_item sk_item sk_item_17 slider_active" style="float: left; width: 200px;">
+                    <a href="javascript:;" class="sk_item_lk">
+                        <div class="lazyimg lazyimg_loaded sk_item_img"><img src="https://img11.360buyimg.com/mobilecms/s140x140_jfs/t1/278/20/6411/250287/5ba1f4afEc5e88222/cdbfa3f636f106b1.jpg!q90.webp" class="lazyimg_img">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $(function () {
+        var index = 1;
+        $(".slider_control_prev").click(function () {
+            index --;
+            dongHua(index);
+            suoYin();
+
+        })
+        $(".slider_control_next").click(function () {
+            index ++;
+            dongHua(index);
+            suoYin();
+
+        })
+        /*定义动画*/
+        function dongHua(index) {
+            $(".slider_wrapper").animate({
+                    "left":-index * 800 + "px"
+            },600,"swing",function () {
+                if (index == 4){
+                    $(".slider_wrapper").css("left",-800);
+                }
+                if (index == 0) {
+                    $(".slider_wrapper").css("left",-800 * 3);
+                }
+            })
+        }
+        function suoYin() {
+            if (index == 4){
+                    index = 1;
+            }else if (index == 0){
+                    index = 3;
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    })
+        
+    
+</script>
+</html>
