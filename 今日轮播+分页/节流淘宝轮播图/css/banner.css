@@ -1,0 +1,59 @@
+.banner{
+  border: 1px solid red;
+  width: 520px; height: 280px;
+  margin: 50px auto;
+  overflow: hidden;
+  position: relative; top: 0; left: 0;
+}
+.banner:hover .btn{
+  display: block;
+}
+.banner ul{
+  width: 3120px;
+  margin-left: -520px;
+}
+.banner li{
+  float: left;
+}
+
+.banner .btn{
+  width: 30px; height: 30px;
+  background: rgba(1,1,1,.5); color: #fff;
+  position: absolute;
+  top: 0; bottom: 0;
+  font-size: 36px;
+  line-height: 22px; text-align: center;
+  margin: auto;
+  display: none;
+  cursor: pointer;
+}
+.banner .btn:hover{
+  background: rgba(1,1,1,.8);
+}
+
+.left-btn{
+  left: 0;
+
+  border-radius: 0 50% 50% 0;
+}
+.right-btn{
+  right: 0;
+  border-radius: 50% 0 0 50%;
+}
+
+.dotted-box{
+  width: 70px; height: 13px;
+  background: rgba(255,255,255,.3);
+  position: absolute; left: 0; right: 0; bottom: 20px;
+  margin: auto;
+  display: flex; justify-content: space-around; align-items: center;
+  border-radius: 6.5px;
+}
+.dotted-box li{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+.dotted-box li.active{
+  background: #ff5000;
+}
