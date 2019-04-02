@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拖拽事件</title>
+    <style type="text/css">
+        .moveBar {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+        }
+
+        .banner {
+            width: 200px;
+            height: 200px;
+            background: skyblue;
+            text-align: center;
+            line-height: 200px;
+            color: #fff;
+        }
+        .banner:active{
+            background: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="moveBar" class="moveBar">
+        <div id="banner" class="banner">按住鼠标移动当前div</div>
+    </div>
+</body>
+<script src="../jquery-3.3.1/jquery-3.3.1.js"></script>
+<script>
+    $(function () {
+        dragPanelMove("#banner", "#moveBar");
+        function dragPanelMove(downDiv, moveDiv) {
+            $(downDiv).mousedown(function (e) {
+                var isMove = true;
+                var div_x = e.pageX - $(moveDiv).offset().left;
+                var div_y = e.pageY - $(moveDiv).offset().top;
+                $(document).mousemove(function (e) {
+                    if (isMove) {
+                        var obj = $(moveDiv);
+                        obj.css({
+                            "left": e.pageX - div_x,
+                            "top": e.pageY - div_y
+                        });
+                    }
+                }).mouseup(
+                    function () {
+                        isMove = false;
+                    });
+            });
+
+        }
+
+    });
+</script>
+
+</html>
