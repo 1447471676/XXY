@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        form{
+            width: 600px;
+            margin: 100px auto;
+        }
+        p{
+            margin-bottom: 10px;
+        }
+        .qq{
+            color: red;
+            font-weight: bold;
+            display: none;
+            margin-left: 5px;
+        }
+        .mm-btm{
+            height: 40px;
+            width: 140px;
+            position: relative;
+            margin-left: 77px;
+            margin-top: 20px;
+        }
+        #lv1,#lv2,#lv3{
+            height: 30px;
+            width: 40px;
+            border-top: 4px solid gainsboro;
+            margin-left: 3px;
+            float: left;
+            font-size: 18px;
+            text-align: center;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+<form action="jq淘宝轮播图.html" method="post">
+    <p><lable>用户名：<input type="text" name="userName" class="auth"><span class="qq">账号不能为空</span><span class="qq">账号至少6位数</span><span class="qq">账号不能大于14位数</span></lable></p>
+    <p><lable>密&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" class="auth"><span class="qq">密码不能为空</span><span class="qq">密码至少6位数</span><span class="qq">密码不能大于14位数</span></lable></p>
+    <div class="mm-btm">
+        <div id="lv1">弱</div>
+        <div id="lv2">中</div>
+        <div id="lv3">强</div>
+    </div>
+    <p><lable>确认密码：<input type="password" name="repassword" class="auth"><span class="qq">密码不一致</span></lable></p>
+    <p><lable>邮&nbsp;&nbsp;&nbsp;箱：<input type="text" name="email" class="auth"><span class="qq">格式不正确</span></lable></p>
+    <p><lable>手&nbsp;&nbsp;&nbsp;机：<input type="text" name="phone" class="auth" maxlength="11"><span class="qq">格式不正确</span></lable></p>
+    <p><input type="submit" value="提交" name="sub"></p>
+</form>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    $(function () {
+        $(".auth").data({"s":0});
+        $("input[name=userName]").blur(function () {
+            var val = $(this).val();
+            if(val.length == 0){
+                $(this).data({"s":0});
+                $(this).next().next().hide()
+                $(this).next().next().next().hide();
+                $(this).next().show();
+            }else if (val.length < 6) {
+                $(this).data({"s":0});
+                $(this).next().next().next().hide();
+                $(this).next().hide();
+                $(this).next().next().show()
+            }else if (val.length>14) {
+                $(this).data({"s":0});
+                $(this).next().hide();
+                $(this).next().next().hide()
+                $(this).next().next().next().show();
+            }else{
+                $(this).data({"s":1});
+                $("input[name=userName]").nextAll().hide();
+            }
+        })
+
+        $("input[name=password]").blur(function () {
+            var val = $(this).val();
+            if(val.length == 0){
+                $(this).data({"s":0});
+                $(this).next().next().hide()
+                $(this).next().next().next().hide();
+                $(this).next().show();
+            }else if (val.length < 6) {
+                $(this).data({"s":0});
+                $(this).next().next().next().hide();
+                $(this).next().hide();
+                $(this).next().next().show()
+            }else if (val.length>14) {
+                $(this).data({"s":0});
+                $(this).next().hide();
+                $(this).next().next().hide()
+                $(this).next().next().next().show();
+            }else{
+                var reg = /^[0-9]{6,14}$|^[a-zA-Z]{6,14}$/; //全是数字或全是字母 6-14个字符
+                var reg1 = /^[A-Za-z0-9]{6,14}$/; //数字、26个英文字母 6-14个字符
+                var reg2 =/^(?=.{6,14})([0-9A-Za-z]*[^0-9A-Za-z][0-9A-Za-z]*){2,}$/; // 由数字、26个英文字母或者下划线组成的字符串 6-14个字符
+                if (val.match(reg)) {
+                    $("#lv1").css("borderTopColor","red");
+                } else if (val.match(reg1)) {
+                    $("#lv1").css("borderTopColor","red");
+                    $("#lv2").css("borderTopColor","yellow");
+                } else if (val.match(reg2)) {
+                    $("#lv1").css("borderTopColor","red");
+                    $("#lv2").css("borderTopColor","yellow");
+                    $("#lv3").css("borderTopColor","green");
+                }
+                $(this).data({"s":1});
+                $("input[name=password]").nextAll().hide();
+            }
+        })
+
+
+        $("input[name=repassword]").blur(function () {
+                var va2 = $(this).val();
+                var va1 = $("input[name=password]").val();
+                if(va1 != va2){
+                    $(this).data({"s":0});
+                        $(this).next().show()
+                }else {
+                    $(this).data({"s":1});
+                    $(this).next().hide();
+                }
+        })
+
+        $("input[name=email]").blur(function () {
+            var val=this.value;
+            if(!val.match(/^\w+@\w+\.\w+$/i)){
+                $(this).data({"s":0});
+                $(this).next().show()
+            }else {
+                $(this).data({"s":1});
+                $(this).next().hide();
+            }
+        })
+        $("input[name=phone]").blur(function () {
+            var val=this.value;
+            if(!val.match(/^1[3|4|5|7|8][0-9]\d{8}$/)){
+                $(this).data({"s":0});
+                $(this).next().show()
+            }else {
+                $(this).data({"s":1});
+                $(this).next().hide();
+            }
+        })
+        
+        $("form").submit(function () {
+            $("input.auth").blur();
+            var zhi = 0;
+            $(".auth").each(function (index) {
+                zhi += $(this).data("s");
+            });
+           if (zhi != 5){
+               return false;
+           }
+        })
+    })
+</script>
+</html>
